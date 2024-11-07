@@ -1,0 +1,16 @@
+{
+    "name": "session",
+    "description": "Cookie-Session",
+    "version": "0.0.1",
+    "dependencies": {
+        "express": "latest",
+        "cookie-session": "latest",
+        "mongoose": "^8.4.3",
+        "bcrypt": "latest",
+        "ejs": "*"
+    },
+    "scripts": {
+        "start": "node server.js"
+    },
+    "engine": "*"
+}
