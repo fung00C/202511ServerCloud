@@ -7,8 +7,7 @@ const Userschema = require('./models/user');
 
 const User = mongoose.model('User', Userschema);
 
-
-mongoose.connect('')
+mongoose.connect('mongodb+srv://hong:hong@cluster0.kdrzk.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0')
 
 const port = 3000;
 
@@ -24,6 +23,7 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 
 app.get('/', (req, res) => {
+    console.log(req.session);
     if (!req.session.authenticated) {    // user not logged in!
         res.redirect('/login');
     } else {
@@ -38,7 +38,7 @@ app.get('/login', (req, res) => {
 });
 
 app.post('/login', (req, res) => {
-    const users1 = User.find({ name: '', password: '' });
+    const users1 = User.find({ name: "", password: "" });
     const user = new User(users1);
     if (user.name == req.body.name && user.password == req.body.password) {
         req.session.authenticated = true;
