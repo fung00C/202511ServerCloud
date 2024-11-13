@@ -3,9 +3,10 @@
     "description": "Cookie-Session",
     "version": "0.0.1",
     "dependencies": {
-        "express": "latest",
+        "express": "*",
         "cookie-session": "latest",
         "mongoose": "^8.4.3",
+        "body-parser": "*",
         "ejs": "*"
     },
     "scripts": {

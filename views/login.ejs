@@ -12,12 +12,21 @@
         Password: <input type="password" name="password"><br>
         <input type="submit" value="Login">
     </form>
-
     <form action="/register">
         <input type="submit" value="Register">
     </form>
 
-    <hr>
+    <body>
+        <div class="container">
+            <h1>Login</h1>
+            <% if (name) { %>
+                <p>Welcome, <%= name %>, !</p>
+                { name: '<%= name %>', password: '<%= password %>' }
+                        <% } else { %>
+                            <p>No user found. Please try again later.</p>
+                            <% } %>
+        </div>
+    </body>
 </body>
 
 </html>
