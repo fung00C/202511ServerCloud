@@ -1,12 +1,13 @@
 {
-    "name": "session",
-    "description": "Cookie-Session",
+    "name": "381Project60",
+    "description": "381 Project 60",
     "version": "0.0.1",
     "dependencies": {
         "express": "*",
         "cookie-session": "latest",
         "mongoose": "^8.4.3",
         "body-parser": "*",
+        "method-override": "^3.0.0",
         "ejs": "*"
     },
     "scripts": {

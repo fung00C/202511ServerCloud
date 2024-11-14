@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>News</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/4.5.2/css/bootstrap.min.css">
+</head>
+
+<body>
+    <div class="container mt-4">
+        <h1>News</h1>
+        <form action="/" method="GET" class="mb-3">
+            <input type="text" name="search" placeholder="Search..." value="<%= searchQuery %>" class="form-control" />
+        </form>
+        <a href="/NewsItems/add" class="btn btn-primary mb-3">Add New Item</a>
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>Title</th>
+                    <th>Image</th>
+                    <th>Info</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+                <% NewsItems.forEach(NewsItem=> { %>
+                    <tr>
+                        <td>
+                            <%= NewsItem.title %>
+                        </td>
+                        <td><img src="<%= NewsItem.imageUrl %>" alt="<%= NewsItem.title %>" style="width: 100px;">
+                        </td>
+                        <td>
+                            <%= NewsItem.info %>
+                        </td>
+                        <td>
+                            <a href="/NewsItems/<%= NewsItem._id %>/edit" class="btn btn-warning">Edit</a>
+                            <form action="/NewsItems/<%= NewsItem._id %>?_method=DELETE" method="POST"
+                                style="display:inline;">
+                                <button type="submit" class="btn btn-danger">Delete</button>
+                            </form>
+                        </td>
+                    </tr>
+                    <% }) %>
+                        <a href='/logout'>Logout</a>
+
+            </tbody>
+        </table>
+    </div>
+</body>
+
+</html>
