@@ -35,8 +35,11 @@ To run this project locally, follow these steps:
    git clone https://github.com/yourusername/news-website.git
 
 2. **Add mongodb uri**:
-  server.js
-  uri = ''
+   server.js
+   ```bash
+   uri = ''
 
 4. **Start server**:
-  npm install or npm start
+   ```bash
+   npm install
+   npm start
