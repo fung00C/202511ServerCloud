@@ -1,8 +1,9 @@
 const express = require('express');
 const mongoose = require('mongoose');
 const session = require('cookie-session');
-const bodyParser = require('body-parser');
+//const bodyParser = require('body-parser');
 const app = express();
+app.use(formidable());
 
 const methodOverride = require('method-override');
 const Userschema = require('./models/user');
@@ -115,8 +116,8 @@ app.use(session({
     cookie: { secure: false }
 }));
 
-app.use(bodyParser.json());
-app.use(bodyParser.urlencoded({ extended: true }));
+//app.use(bodyParser.json());
+//app.use(bodyParser.urlencoded({ extended: true }));
 app.use(methodOverride('_method'));
 app.use(express.static('public'));
 
@@ -215,6 +216,32 @@ app.put('/NewsItems/:id', async (req, res) => {
 app.delete('/NewsItems/:id', async (req, res) => {
     await News.findByIdAndDelete(req.params.id);
     res.redirect('/');
+});
+
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+////                                                                                                                                                    ////
+////                                                                                                                                                   ////
+////                                              test api                                                                                            ////
+////                                                                                                                                                 ////
+////                                                                                                                                                ////
+///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+app.post('/api/title/:title/img/:imageUrl/info/:info', async (req,res) => { 
+    if (req.params.title) {
+        console.log(req.body)
+		//try {
+			await mongoose.connect(uri);
+			console.log("Connected successfully to server");
+            let doc = { title: req.params.title || req.fields.title,
+                        imageUrl: req.fields.imageUrl,
+                        info: req.fields.info};
+            const NewDoc = new News(doc);
+            await NewDoc.save();
+            console.log(NewDoc);
+		    res.status(200).json({"Successfully inserted":NewDoc});
+    } else {
+        res.status(500).json({"error": "missing bookingid"});
+    }
 });
 
 
