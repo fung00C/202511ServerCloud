@@ -11,6 +11,7 @@ const NewsSchema = require('./models/news');
 const News = mongoose.model('News', NewsSchema);
 const { name } = require('ejs');
 const uri = ''
+
 const port = 8091;
 
 

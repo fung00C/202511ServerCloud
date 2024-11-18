@@ -84,6 +84,9 @@
         <hr>
         <a href="/NewsItems/add" class="btn btn-primary mb-3">Add News</a>
         <hr>
+        <a href='/logout'>Logout</a>
+
+        <hr>
         <% NewsItems.forEach(NewsItem=> { %>
             <div class="about-section">
                 <img src="<%= NewsItem.imageUrl %>" alt="<%= NewsItem.title %>">

@@ -43,3 +43,16 @@ To run this project locally, follow these steps:
    ```bash
    npm install
    npm start
+
+5. **Register**:
+   ```bash
+   Click Register
+   Create account
+
+6. **Login**:
+   ```bash
+   Click Login
+
+7. **CURD**:
+   ```bash
+   Search, Edit, Delete News
