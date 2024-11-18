@@ -44,7 +44,7 @@ async function main() {
         { name: 'guest', password: 'guest' }
     ];
 
-    const dynamicUsers = await User.find().select('name password'); // Fetch only name and password
+    const dynamicUsers = await User.find().select('name password');
     const Added_users = [...staticUsers, ...dynamicUsers.map(user => ({
         name: user.name,
         password: user.password
@@ -117,7 +117,7 @@ app.use(session({
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(methodOverride('_method'));
-app.use(express.static('public')); // To serve static files such as images
+app.use(express.static('public'));
 
 
 
