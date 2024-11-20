@@ -4,118 +4,60 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>About Us</title>
-    <link rel="stylesheet" href="styles.css">
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            margin: 0;
-            padding: 0;
-            background-color: #f4f4f4;
-        }
-
-        header {
-            background: #35424a;
-            color: #ffffff;
-            padding: 10px 0;
-            text-align: center;
-        }
-
-        .container {
-            width: 80%;
-            margin: auto;
-            overflow: hidden;
-            padding: 20px;
-        }
-
-        .about-section {
-            display: flex;
-            align-items: center;
-            margin-bottom: 20px;
-        }
-
-        .about-section img {
-            width: 300px;
-            height: auto;
-            margin-right: 20px;
-            border-radius: 8px;
-        }
-
-        .about-section div {
-            flex: 1;
-        }
-
-        .button {
-            display: inline-block;
-            padding: 10px 20px;
-            margin: 10px 0;
-            background-color: #35424a;
-            color: #ffffff;
-            text-decoration: none;
-            border-radius: 5px;
-            transition: background-color 0.3s;
-        }
-
-        .button:hover {
-            background-color: #45a049;
-        }
-
-        footer {
-            text-align: center;
-            padding: 10px 0;
-            background: #35424a;
-            color: #ffffff;
-            position: relative;
-            bottom: 0;
-            width: 100%;
-        }
-    </style>
+    <title>Home</title>
+    <link rel="stylesheet" href="../css/home.css">
 </head>
 
 <body>
-    <header>
-        <h1>SUNSHINE NEWS</h1>
-    </header>
-
     <div class="container">
-        <form action="/" method="GET" class="mb-3">
-            <input type="text" name="search" placeholder="Search..." value="<%= searchQuery %>" class="form-control" />
-        </form>
-        <hr>
-        <a href="/NewsItems/add" class="btn btn-primary mb-3">Add News</a>
-        <hr>
-        <a href='/logout'>Logout</a>
-
-        <hr>
-        <% NewsItems.forEach(NewsItem=> { %>
-            <div class="about-section">
-                <img src="<%= NewsItem.imageUrl %>" alt="<%= NewsItem.title %>">
-                <div>
-                    <h2>
-                        <%= NewsItem.title %>
-                    </h2>
-                    <p>
-                        <%= NewsItem.info %>
-                    </p>
-                    <a href="/NewsItems/<%= NewsItem._id %>/edit" class="btn btn-warning">Edit</a>
-                    <form action="/NewsItems/<%= NewsItem._id %>?_method=DELETE" method="POST" style="display:inline;">
-                        <button type="submit" class="btn btn-danger">Delete</button>
-                    </form>
-                </div>
-                <hr>
+        <h1 class="pageTitle">News</h1>
+        <div class="topBar">
+            <a href="/NewsItems/add" class="a_add">
+                <img src="../icon/ic_add.png" alt="Add New Item">
+            </a>
+            <form action="/" method="GET" class="fm_search">
+                <input type="text" name="search" placeholder="Search..." value="<%= searchQuery %>"/>
+            </form>
+            <a href='/logout' class="a_logout">
+                <img src="../icon/ic_logout.png" alt="Logout">
+            </a>
+        </div>
+        <div class="div_table">
+            <div class="div_tableHeader">
+                <label>Image</label>
+                <label>Title & Info</label>
+                <label>Actions</label>
             </div>
-            <% }) %>
-
+            <div class="div_tableBody">
+                <% NewsItems.forEach(NewsItem=> { %>
+                    <div class="div_tableRow">
+                        <div class="div_imageArea">
+                            <img src="<%= NewsItem.imageUrl %>" alt="<%= NewsItem.title %>">
+                        </div>
+                        <div class="div_TitleInfoArea">
+                            <div class="div_titleArea">
+                                <%= NewsItem.title %>
+                            </div>
+                            <hr/>
+                            <div class="div_infoArea">
+                                <%= NewsItem.info %>
+                            </div>
+                        </div>
+                        <div class="div_actionArea">
+                            <a href="/NewsItems/<%= NewsItem._id %>/edit" class="a_edit">
+                                <img src="../icon/ic_edit.png" alt="Edit"/>
+                            </a>
+                            <form action="/NewsItems/<%= NewsItem._id %>?_method=DELETE" method="POST" class="fm_delete">
+                                <button type="submit">
+                                    <img src="../icon/ic_delete.png" alt="Edit"/>
+                                </button>
+                            </form>
+                        </div>
+                    </div>
+                <% }) %>
+            </div>
+        </div>
     </div>
-    <a href='/logout'>Logout</a>
-
-    <body>
-
-        <footer>
-            <p>&copy; 2025 Our Company. All rights reserved.</p>
-        </footer>
-    </body>
-
 </body>
 
 </html>
