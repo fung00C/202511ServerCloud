@@ -1,9 +1,8 @@
 const express = require('express');
 const mongoose = require('mongoose');
 const session = require('cookie-session');
-//const bodyParser = require('body-parser');
+const bodyParser = require('body-parser');
 const app = express();
-app.use(formidable());
 
 const methodOverride = require('method-override');
 const Userschema = require('./models/user');
@@ -12,7 +11,6 @@ const NewsSchema = require('./models/news');
 const News = mongoose.model('News', NewsSchema);
 const { name } = require('ejs');
 const uri = ''
-
 const port = 8091;
 
 
@@ -46,7 +44,7 @@ async function main() {
         { name: 'guest', password: 'guest' }
     ];
 
-    const dynamicUsers = await User.find().select('name password');
+    const dynamicUsers = await User.find().select('name password'); // Fetch only name and password
     const Added_users = [...staticUsers, ...dynamicUsers.map(user => ({
         name: user.name,
         password: user.password
@@ -63,6 +61,11 @@ async function seedDatabase() {
         { name: 'Admin', password: 'admin' }
     ];
     const defaultUsers1 = [
+        {   
+            title: '‘Possibility of a catastrophic failure’: Inside the space station leak problem that has NASA worried', 
+            imageUrl: 'https://media.cnn.com/api/v1/images/stellar/prod/51353322598-4f68034eb8-5k.jpg?c=16x9&q=h_653,w_1160,c_fill/f_webp', 
+            info: 'A Russian-controlled segment of the International Space Station is leaking, allowing pressure and air to bleed out. The situation has reached a fever pitch as cosmonauts scramble to patch problem areas and officials from Russia’s space agency, Roscosmos, and NASA disagree about the severity of the problem. ... ...' 
+        },
         { title: 'TEST1', imageUrl: 'TEST1_IMAGE', info: 'TEST1_INFO' },
         { title: 'TEST2', imageUrl: 'TEST2_IMAGE', info: 'TEST2_INFO' },
         { title: 'TEST3', imageUrl: 'TEST3_IMAGE', info: 'TEST3_INFO' },
@@ -116,10 +119,11 @@ app.use(session({
     cookie: { secure: false }
 }));
 
-//app.use(bodyParser.json());
-//app.use(bodyParser.urlencoded({ extended: true }));
+app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({ extended: true }));
 app.use(methodOverride('_method'));
-app.use(express.static('public'));
+app.use(express.static('public')); // To serve static files such as images
+
 
 
 
@@ -216,32 +220,6 @@ app.put('/NewsItems/:id', async (req, res) => {
 app.delete('/NewsItems/:id', async (req, res) => {
     await News.findByIdAndDelete(req.params.id);
     res.redirect('/');
-});
-
-////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-////                                                                                                                                                    ////
-////                                                                                                                                                   ////
-////                                              test api                                                                                            ////
-////                                                                                                                                                 ////
-////                                                                                                                                                ////
-///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-
-app.post('/api/title/:title/img/:imageUrl/info/:info', async (req,res) => { 
-    if (req.params.title) {
-        console.log(req.body)
-		//try {
-			await mongoose.connect(uri);
-			console.log("Connected successfully to server");
-            let doc = { title: req.params.title || req.fields.title,
-                        imageUrl: req.fields.imageUrl,
-                        info: req.fields.info};
-            const NewDoc = new News(doc);
-            await NewDoc.save();
-            console.log(NewDoc);
-		    res.status(200).json({"Successfully inserted":NewDoc});
-    } else {
-        res.status(500).json({"error": "missing bookingid"});
-    }
 });
 
 
