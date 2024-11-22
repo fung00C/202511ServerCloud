@@ -64,7 +64,7 @@ To run this project locally, follow these steps:
    curl -X POST -H "Content-Type: application/json" --data '{"title":"TEst new titles45343","imageUrl":"https://images.pexels.com/photos/3760809/pexels-photo-3760809.jpeg?auto=compress&cs=tinysrgb&w=600","info":"ＴＨＩＳ　ＩＳ　ＴＥＳＴ！！！！"}' <IP:PORT>/api/news/
    
    Read:
-   curl -X GET "<ip:port>/api/title/A night of redemption for Carsley offers real hope for Tuchel"
+   curl -X PUT -H "Content-type: application/json" -d '{"imageUrl": "https://images.pexels.com/photos/2674271/pexels-photo-2674271.jpeg?auto=compress&cs=tinysrgb&w=600", "info": "Updated info"}' '<IP:PORT>/api/title/A night of redemption for Carsley offers real hope for Tuchel'
    
    Updata:
    curl -X PUT -H "Content-type: application/json" -d '{"imageUrl": "", "info": "Updated info"}' '<IP:PORT>/api/title/TEST1'
