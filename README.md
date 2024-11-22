@@ -81,3 +81,10 @@ docker login
 docker build -t 381-project-60 .
 
 docker run -p <port>:<port> -d 381-project-60
+
+
+docker stop <container-id>
+
+docker rm <container-id>
+
+docker image rm <image-id>
