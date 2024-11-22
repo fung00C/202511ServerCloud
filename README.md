@@ -71,3 +71,13 @@ To run this project locally, follow these steps:
 
    Delete:
    curl -X DELETE "<ip:port>/api/title/TEst new titles"
+
+
+Docker:
+
+   ```bash
+docker login 
+
+docker build -t 381-project-60 .
+
+docker run -p <port>:<port> -d 381-project-60
