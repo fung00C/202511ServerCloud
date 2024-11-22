@@ -61,7 +61,7 @@ To run this project locally, follow these steps:
 
    ```bash
    Create:
-   curl -X POST -H "Content-Type: application/json" --data '{"title":"TEst new titles","","info":"ＴＨＩＳ　ＩＳ　ＴＥＳＴ！！！！"}' <ip:port>/api/news/
+   curl -X POST -H "Content-Type: application/json" --data '{"title":"TEst new titles45343","imageUrl":"https://images.pexels.com/photos/3760809/pexels-photo-3760809.jpeg?auto=compress&cs=tinysrgb&w=600","info":"ＴＨＩＳ　ＩＳ　ＴＥＳＴ！！！！"}' <IP:PORT>/api/news/
    
    Read:
    curl -X GET "<ip:port>/api/title/A night of redemption for Carsley offers real hope for Tuchel"
