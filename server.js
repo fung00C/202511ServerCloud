@@ -9,7 +9,7 @@ const User = mongoose.model('User', Userschema);
 const NewsSchema = require('./models/news');
 const News = mongoose.model('News', NewsSchema);
 const { name } = require('ejs');
-const uri = ''
+const uri = 'mongodb+srv://new:12345678a@trytry1.yohksea.mongodb.net/?retryWrites=true&w=majority&appName=trytry1'
 const port = 8091;
 
 mongoose.connect(uri);
