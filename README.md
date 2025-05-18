@@ -1,4 +1,5 @@
-# 381project-60
+# 202511ServerCloud
+Course - Server-side Technologies And Cloud Computing
 
 # News Website
 
