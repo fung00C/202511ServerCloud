@@ -14,7 +14,7 @@ const port = 8091;
 
 mongoose.connect(uri);
 
-async function main() {
+/*async function main() {
     await mongoose.connect(uri);
 
 
@@ -25,20 +25,18 @@ async function main() {
         password: user.password
     }));
     console.log(Added_users);
-}
+}*/
 
 async function main() {
     await mongoose.connect(uri);
 
     const staticUsers = [
         { name: 'developer', password: 'developer' },
-
         { name: 'guest', password: 'guest' }
     ];
 
     const dynamicUsers = await User.find().select('name password');
     const Added_users = [...staticUsers, ...dynamicUsers.map(user => ({
-
         name: user.name,
         password: user.password
     }))];
@@ -53,7 +51,7 @@ async function seedDatabase() {
         { name: 'BenLee', password: 'guest' },
         { name: 'Admin', password: 'admin' }
     ];
-    const defaultUsers1 = [
+    const defaultNews = [
         { title: 'Does Kane criticism expose England cracks?', imageUrl: 'https://ichef.bbci.co.uk/ace/standard/976/cpsprodpb/9864/live/056402e0-a1f3-11ef-87b5-dba728a0baa3.jpg.webp', info: 'So when Kane diverted from his trademark non-controversial messaging to deliver what amounted to a very public slap down on England team-mates for missing the forthcoming Uefa Nations League games against Greece and the Republic of Ireland, it was a moment of wide significance.' },
         { title: 'A night of redemption for Carsley offers real hope for Tuchel', imageUrl: 'https://ichef.bbci.co.uk/ace/standard/976/cpsprodpb/8a4d/live/eaad95e0-a276-11ef-a4fe-a3e9a6c5d640.jpg.webp', info: 'The schedule of the three international breaks in September, October and November has been in place for decades. But from 2026, the September and October international breaks will be combined into a single window of four matches.' },
         { title: 'Crisis for referees and fuel for toxic fan conspiracies', imageUrl: 'https://ichef.bbci.co.uk/ace/standard/800/cpsprodpb/8ae0/live/0d885e80-a0f4-11ef-b587-eb8d9a920f25.jpg.webp', info: 'The video of Premier League referee David Cootes alleged expletive-laden insults about Liverpool and their former manager Jurgen Klopp carries ramifications far wider than abusive words used on shaky mobile phone footage.' },
@@ -76,7 +74,7 @@ async function seedDatabase() {
 
 
     if (count_news === 0) {
-        await News.insertMany(defaultUsers1);
+        await News.insertMany(defaultNews);
         console.log('Database seeded with default news data');
     } else {
 
